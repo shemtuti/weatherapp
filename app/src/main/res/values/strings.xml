@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Weather App</string>
+    <string name="no_internet_connection">No Internet connection! Kindly check your Internet connection and try again.</string>
+    <string name="alert">Alert</string>
+    <string name="kindly_enable_location">Kindly enable location for best experience</string>
+    <string name="temp_symbol">°</string>
+    <string name="try_again">Try Again</string>
+    <string name="loc_info_title">Location is off</string>
+    <string name="loc_info_message">Please turn on location services to get the best experience.</string>
+    <string name="loc_btn_agree">Turn on</string>
+    <string name="location_icon">Location icon</string>
+    <string name="weather_icon">Weather Icon</string>
+    <string name="hrs">"hrs"</string>
+    <string name="time">Time</string>
+    <string name="weather">Weather</string>
+    <string name="min_temp">Min</string>
+    <string name="max_temp">Max</string>
+    <string name="empty">\u0020</string>
+</resources>
