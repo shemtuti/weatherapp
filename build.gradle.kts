@@ -65,3 +65,10 @@ allprojects {
         extensions.configure(configureSpotless)
     }
 }
+
+afterEvaluate {
+    // Install KtLint check Git hook
+    tasks.named("clean") {
+        dependsOn(":installGitHooks")
+    }
+}
