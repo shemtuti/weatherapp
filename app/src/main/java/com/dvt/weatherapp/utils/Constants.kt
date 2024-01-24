@@ -10,7 +10,7 @@ object Constants {
     val LOCATION_LON = stringPreferencesKey("lon")
     val PERMISSION_REQUEST_LOCATION = 100
     const val PERMISSION_ALL = 1
-    var PERMISSIONS_LOCATION = arrayOf(
+    var permissionsLocation = arrayOf(
         Manifest.permission.ACCESS_COARSE_LOCATION,
         Manifest.permission.ACCESS_FINE_LOCATION
     )

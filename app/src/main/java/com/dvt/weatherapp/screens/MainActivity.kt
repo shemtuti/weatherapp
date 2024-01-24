@@ -35,7 +35,7 @@ import androidx.core.app.ActivityCompat
 import com.dvt.weatherapp.R
 import com.dvt.weatherapp.screens.composables.MainScreen
 import com.dvt.weatherapp.screens.viewmodels.WeatherViewModel
-import com.dvt.weatherapp.ui.theme.WeatherAppTheme
+import com.dvt.weatherapp.ui.theme.weatherAppTheme
 import com.dvt.weatherapp.utils.AppPermissions.hasPermissions
 import com.dvt.weatherapp.utils.AppPermissions.isInternetAvailable
 import com.dvt.weatherapp.utils.AppPermissions.validateAndForceLocationSetting
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 
     @Composable
     fun HomeScreen(context: Context) {
-        WeatherAppTheme {
+        weatherAppTheme {
             MainScreen()
         }
     }
@@ -166,7 +166,7 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun NoInternetConnection(context: Context) {
-    WeatherAppTheme {
+    weatherAppTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.primary

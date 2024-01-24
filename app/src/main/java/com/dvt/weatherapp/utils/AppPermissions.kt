@@ -57,13 +57,13 @@ object AppPermissions {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 ActivityCompat.requestPermissions(
                     context as Activity,
-                    Constants.PERMISSIONS_LOCATION,
+                    Constants.permissionsLocation,
                     Constants.PERMISSION_ALL
                 )
             } else {
                 ActivityCompat.requestPermissions(
                     context as Activity,
-                    Constants.PERMISSIONS_LOCATION,
+                    Constants.permissionsLocation,
                     Constants.PERMISSION_ALL
                 )
             }
@@ -76,13 +76,13 @@ object AppPermissions {
         }
         if (!hasPermissions(
                 context,
-                Constants.PERMISSIONS_LOCATION[0],
-                Constants.PERMISSIONS_LOCATION[1]
+                Constants.permissionsLocation[0],
+                Constants.permissionsLocation[1]
             )
         ) {
             ActivityCompat.requestPermissions(
                 Objects.requireNonNull(context),
-                Constants.PERMISSIONS_LOCATION,
+                Constants.permissionsLocation,
                 1
             )
         }
