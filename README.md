@@ -68,33 +68,41 @@ This is a weather forecast app which provides users with timely and current weat
 
 <table>
 <tr>
-<td>
-<img width="300" height="450" src="./screenshots/screenshot_1.jpeg"/>
-</td>
+	<td>
+		<img src="./screenshots/app_preview.mp4"/>
+	</td>
+	<td>
+		<img src="./screenshots/screenshot_1.jpeg"/>
+	</td>
 </tr>
-<td>
-<img width="300" height="450" src="./screenshots/screenshot_2.jpeg"/>
-</td>
+
+	</br>
+
+<tr>
+	<td>
+		<img src="./screenshots/screenshot_2.jpeg"/>
+	</td>
+	<td>
+		<img src="./screenshots/screenshot_3.jpeg"/>
+	</td>
 </tr>
 
 <tr>
-<td>
-<img width="300" height="450" src="./screenshots/screenshot_3.jpeg"/>
-</td>
-</tr>
-<td>
-<img width="300" height="450" src="./screenshots/screenshot_4.jpeg"/>
-</td>
+	<td>
+		<img src="./screenshots/screenshot_4.jpeg"/>
+	</td>
+	<td>
+		<img src="./screenshots/screenshot_5.jpeg"/>
+	</td>
 </tr>
 
 <tr>
-<td>
-<img width="300" height="450" src="./screenshots/screenshot_5.jpeg"/>
-</td>
-</tr>
-<td>
-<img width="300" height="450" src="./screenshots/screenshot_6.jpeg"/>
-</td>
+	<td>
+		<img src="./screenshots/screenshot_6.jpeg"/>
+	</td>
+	<td>
+		<img src="./screenshots/screenshot_7.jpeg"/>
+	</td>
 </tr>
 
 </table>
