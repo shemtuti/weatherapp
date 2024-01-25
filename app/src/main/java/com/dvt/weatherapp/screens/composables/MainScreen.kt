@@ -18,19 +18,30 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.dvt.weatherapp.data.local.model.FavouriteTable
+import com.dvt.weatherapp.screens.components.DrawerButton
+import com.dvt.weatherapp.screens.viewmodels.FavouriteViewModel
 import com.dvt.weatherapp.screens.viewmodels.WeatherViewModel
 import com.dvt.weatherapp.utils.Util
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun MainScreen(
-    viewModel: WeatherViewModel = koinViewModel()
+    onToggleDrawer: () -> Unit,
+    viewModel: WeatherViewModel = koinViewModel(),
+    viewModelFavourite: FavouriteViewModel = koinViewModel()
 ) {
     val uiCurrentState = viewModel.stateCurrentWeather.collectAsState().value
     val uiForestState = viewModel.stateForecastWeather.collectAsState().value
 
     val weatherCurrent = uiCurrentState.weather?.currentWeather
     val color = Util.getWeatherBackgroundColor(weatherCurrent)
+
+    val currentLocation = uiCurrentState.weather?.locationName
+
+    if(currentLocation.toString().isNotEmpty()){
+        viewModelFavourite.checkIsFavouriteStatus(currentLocation.toString())
+    }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -40,7 +51,24 @@ fun MainScreen(
             .fillMaxHeight()
             .background(color = color)
     ) {
-        CurrentWeather(uiCurrentState)
+        DrawerButton(onToggleDrawer  = onToggleDrawer)
+
+        CurrentWeather(
+            uiCurrentState,
+            saveFavourite = {
+                val favourite = FavouriteTable(
+                    dt = uiCurrentState.weather?.dt ?: 0,
+                    lat = uiCurrentState.weather?.lat ?: 0.0,
+                    lon = uiCurrentState.weather?.lon ?: 0.0,
+                    currentWeather = uiCurrentState.weather?.currentWeather ?: "",
+                    currentWeatherDesc = uiCurrentState.weather?.currentWeatherDesc ?: "",
+                    tempNormal = uiCurrentState.weather?.tempNormal ?: 0.0,
+                    tempMax = uiCurrentState.weather?.tempMax ?: 0.0,
+                    tempMin = uiCurrentState.weather?.tempMin ?: 0.0,
+                    locationName = uiCurrentState.weather?.locationName ?: "",
+                )
+                viewModelFavourite.saveFavouriteWeather(favourite)
+            })
 
         Spacer(Modifier.size(15.dp))
 

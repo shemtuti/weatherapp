@@ -107,6 +107,13 @@ dependencies {
     implementation("androidx.navigation:navigation-ui:2.7.6")
     implementation("androidx.navigation:navigation-compose:2.7.6")
 
+    // Google maps
+    implementation("com.google.maps.android:android-maps-utils:2.3.0")
+    implementation("com.google.maps.android:maps-utils-ktx:3.4.0")
+    implementation("com.google.android.gms:play-services-maps:18.0.2")
+    implementation("com.google.maps.android:maps-ktx:3.4.0")
+    implementation("com.google.maps.android:maps-compose:2.7.2")
+
     // Timber
     implementation("com.jakewharton.timber:timber:5.0.0")
 

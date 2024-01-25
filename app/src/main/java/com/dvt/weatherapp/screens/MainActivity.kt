@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
@@ -19,11 +20,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalDrawerSheet
+import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,6 +43,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import com.dvt.weatherapp.R
+import com.dvt.weatherapp.screens.components.HomeDrawerContent
+import com.dvt.weatherapp.screens.components.HomeDrawerOptions
+import com.dvt.weatherapp.screens.composables.FavouriteWeather
 import com.dvt.weatherapp.screens.composables.MainScreen
 import com.dvt.weatherapp.screens.viewmodels.WeatherViewModel
 import com.dvt.weatherapp.ui.theme.weatherAppTheme
@@ -43,6 +56,7 @@ import com.dvt.weatherapp.utils.AppPreferences
 import com.dvt.weatherapp.utils.Constants
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
@@ -68,8 +82,61 @@ class MainActivity : AppCompatActivity() {
 
     @Composable
     fun HomeScreen(context: Context) {
-        weatherAppTheme {
-            MainScreen()
+        val coroutineScope = rememberCoroutineScope()
+        var drawerRoute by remember { mutableStateOf(HomeDrawerOptions.Home) }
+        val drawerState = rememberDrawerState(DrawerValue.Closed)
+
+        ModalNavigationDrawer(
+            drawerContent = {
+                ModalDrawerSheet {
+                    HomeDrawerContent(
+                        onExit = {
+                            coroutineScope.launch { drawerState.close() }
+                        },
+                        onClick = {
+                            drawerRoute = it
+                            coroutineScope.launch { drawerState.close() }
+                        },
+                        currentRoute = drawerRoute,
+                    )
+
+                }
+            },
+            drawerState = drawerState,
+        ) {
+            when (drawerRoute) {
+                HomeDrawerOptions.Home -> {
+                    weatherAppTheme {
+                        MainScreen(onToggleDrawer = {
+                            coroutineScope.launch {
+                                if (drawerState.isOpen) drawerState.close() else drawerState.open()
+                            }
+                        })
+                    }
+                }
+                HomeDrawerOptions.Favourites -> {
+                    weatherAppTheme {
+                        FavouriteWeather(onToggleDrawer = {
+                            coroutineScope.launch {
+                                if (drawerState.isOpen) drawerState.close() else drawerState.open()
+                            }
+                        })
+                    }
+                }
+                HomeDrawerOptions.Map -> {
+                    weatherAppTheme {
+                        MainScreen(onToggleDrawer = {
+                            coroutineScope.launch {
+                                if (drawerState.isOpen) drawerState.close() else drawerState.open()
+                            }
+                        })
+                    }
+                }
+            }
+        }
+        BackHandler(enabled = drawerRoute != HomeDrawerOptions.Home) {
+            drawerRoute = HomeDrawerOptions.Home
+            if (drawerState.isOpen) coroutineScope.launch { drawerState.close() }
         }
     }
 

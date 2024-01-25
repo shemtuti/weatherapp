@@ -14,11 +14,10 @@ interface ForecastWeatherDao {
     /**
      * Forecast Weather Queries
      */
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertForecastWeather(currentWeather: ForecastTable)
 
-    // Return forecast for the next 5 days(beginning of the day)
+    // Return forecast for the next 5 days(beginning of day)
     @Query("SELECT * FROM forecastweathertable WHERE time = :timestamp ORDER BY dt LIMIT 5")
     fun getForecastWeather(timestamp: String = "09:00"): Flow<List<ForecastTable>>
 

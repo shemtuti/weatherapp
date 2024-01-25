@@ -24,3 +24,7 @@ data class ForecastDayWeatherState(
     val tempMin: Double? = 0.0,
     val humidity: Int? = 0,
 )
+
+data class FavouriteWeatherState(
+    val favourite: List<FavouriteTable> = emptyList()
+)
