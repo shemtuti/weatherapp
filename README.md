@@ -66,10 +66,10 @@ This is a weather forecast app which provides users with timely and current weat
 
 # Screenshots:
 
-<table>
+<table style="border-spacing: 10px;">
 <tr>
 	<td>
-		<img src="./screenshots/app_preview.mp4"/>
+		<img src="./screenshots/screenshot_0.jpeg"/>
 	</td>
 	<td>
 		<img src="./screenshots/screenshot_1.jpeg"/>
