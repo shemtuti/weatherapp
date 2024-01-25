@@ -55,73 +55,70 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-    implementation("androidx.activity:activity-compose:1.8.2")
+    implementation(libs.core.ktx)
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.activity.compose)
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
-    implementation("com.google.accompanist:accompanist-drawablepainter:0.32.0")
+    implementation(libs.accompanist.drawablepainter)
 
     // Koin for DI
-    implementation("io.insert-koin:koin-android:3.5.0")
-    implementation("io.insert-koin:koin-androidx-compose:3.5.0")
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
 
     // Network
-    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
+    implementation(libs.logging.interceptor)
 
     // Retrofit for network requests
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
-    implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.okhttp)
+    implementation(libs.converter.moshi)
+    implementation(libs.retrofit2.kotlin.coroutines.adapter)
 
     // Room database
-    implementation("androidx.room:room-ktx:2.6.1")
-    implementation("androidx.room:room-runtime:2.6.1")
-    ksp("androidx.room:room-compiler:2.6.1")
+    implementation(libs.room.ktx)
+    implementation(libs.room.runtime)
+    ksp(libs.androidx.room.compiler)
 
     // Datastore
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation(libs.androidx.datastore.preferences)
 
     // Moshi for parsing the JSON format
-    implementation("com.squareup.moshi:moshi:1.14.0")
-    implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
-    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.14.0")
+    implementation(libs.moshi)
+    implementation(libs.moshi.kotlin)
+    ksp(libs.moshi.kotlin.codegen)
 
     // Logging
-    implementation("com.jakewharton.timber:timber:4.7.1")
+    implementation(libs.jakewharton.timber)
 
     // ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
     // Location
-    implementation("com.google.android.gms:play-services-auth:20.7.0")
-    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation(libs.play.services.auth)
+    implementation(libs.play.services.location)
 
     // Navigation
-    implementation("androidx.navigation:navigation-fragment:2.7.6")
-    implementation("androidx.navigation:navigation-ui:2.7.6")
-    implementation("androidx.navigation:navigation-compose:2.7.6")
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
+    implementation(libs.androidx.navigation.compose)
 
     // Google maps
-    implementation("com.google.maps.android:android-maps-utils:2.3.0")
-    implementation("com.google.maps.android:maps-utils-ktx:3.4.0")
-    implementation("com.google.android.gms:play-services-maps:18.0.2")
-    implementation("com.google.maps.android:maps-ktx:3.4.0")
-    implementation("com.google.maps.android:maps-compose:2.7.2")
+    implementation(libs.android.maps.utils)
+    implementation(libs.maps.utils.ktx)
+    implementation(libs.play.services.maps)
+    implementation(libs.android.maps.ktx)
+    implementation(libs.maps.compose)
 
-    // Timber
-    implementation("com.jakewharton.timber:timber:5.0.0")
+    implementation(libs.google.accompanist.permissions)
 
-    implementation("com.google.accompanist:accompanist-permissions:0.32.0")
-
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")

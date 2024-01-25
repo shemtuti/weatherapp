@@ -89,7 +89,7 @@ class Util {
         fun getWeatherBackgroundColor(weather: String?): Color {
             val backgroundColor: Color = when (weather) {
                 "Clouds" -> Cloudy
-                "Rains" -> Rainy
+                "Rain" -> Rainy
                 else -> Sunny
             }
             return backgroundColor
@@ -103,7 +103,7 @@ class Util {
                     null
                 )
 
-                "Rains" -> ResourcesCompat.getDrawable(
+                "Rain" -> ResourcesCompat.getDrawable(
                     context.resources,
                     R.drawable.sea_rainy,
                     null
@@ -126,7 +126,7 @@ class Util {
                     null
                 )
 
-                "Rains" -> ResourcesCompat.getDrawable(
+                "Rain" -> ResourcesCompat.getDrawable(
                     context.resources,
                     R.mipmap.ic_rain,
                     null
@@ -149,7 +149,7 @@ class Util {
                     null
                 )
 
-                "Rains" -> ResourcesCompat.getDrawable(
+                "Rain" -> ResourcesCompat.getDrawable(
                     context.resources,
                     R.drawable.marker_rainy,
                     null
