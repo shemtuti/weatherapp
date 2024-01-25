@@ -16,4 +16,6 @@
     <string name="min_temp">Min</string>
     <string name="max_temp">Max</string>
     <string name="empty">\u0020</string>
+    <string name="no_favourite">No favourite location added yet!</string>
+    <string name="delete_favourite">Delete Favourite</string>
 </resources>

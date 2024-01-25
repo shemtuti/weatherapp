@@ -2,9 +2,9 @@ package com.dvt.weatherapp.repository
 
 import com.dvt.weatherapp.data.local.datasource.WeatherDatabase
 import com.dvt.weatherapp.data.local.model.CurrentTable
+import com.dvt.weatherapp.data.local.model.FavouriteTable
 import com.dvt.weatherapp.data.local.model.ForecastDayWeatherState
 import com.dvt.weatherapp.data.local.model.ForecastTable
-import com.dvt.weatherapp.data.local.model.ForecastWeatherState
 import com.dvt.weatherapp.data.remote.api.ApiService
 import com.dvt.weatherapp.data.remote.model.FetchResult
 import com.dvt.weatherapp.utils.Constants
@@ -105,6 +105,24 @@ internal class WeatherRepositoryImpl(
 
     override fun getForecastDayWeather(timestamp: String): Flow<List<ForecastDayWeatherState>> {
         return database.forecastWeatherDao.getForecastDayWeather(timestamp)
+    }
+
+    override fun getFavouriteWeather(): Flow<List<FavouriteTable>> {
+        return database.favouriteWeatherDao.getFavouriteWeather()
+    }
+
+    override suspend fun saveFavouriteWeather(weather: FavouriteTable) {
+        database.favouriteWeatherDao.insertFavouriteWeather(weather)
+    }
+
+    override suspend fun deleteFavourite(favourite: FavouriteTable) {
+        database.favouriteWeatherDao.deleteFavourite(favourite)
+    }
+    override suspend fun deleteFavouriteByName(name: String) {
+        database.favouriteWeatherDao.deleteFavouriteByName(name)
+    }
+    override suspend fun checkIsFavouriteStatus(name: String) : Boolean {
+        return database.favouriteWeatherDao.checkIsFavouriteStatus(name)
     }
 
 
