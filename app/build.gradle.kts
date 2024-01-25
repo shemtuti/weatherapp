@@ -2,7 +2,9 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("kotlin-android")
     id("com.google.devtools.ksp")
+    alias(libs.plugins.com.google.android.libraries.mapsplatform.secrets.gradle.plugin)
 }
 
 android {
@@ -42,6 +44,7 @@ android {
     }
     buildFeatures {
         compose = true
+        viewBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -82,6 +85,8 @@ dependencies {
     // Room database
     implementation(libs.room.ktx)
     implementation(libs.room.runtime)
+    implementation(libs.appcompat)
+    implementation(libs.constraintlayout)
     ksp(libs.androidx.room.compiler)
 
     // Datastore

@@ -19,4 +19,6 @@
     <string name="no_favourite">No favourite location added yet!</string>
     <string name="delete_favourite">Delete Favourite</string>
     <string name="favourite_title">Favourites</string>
+    <string name="favourite_title_map">Favourites Map</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
