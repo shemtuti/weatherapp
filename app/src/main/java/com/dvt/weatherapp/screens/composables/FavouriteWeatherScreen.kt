@@ -40,7 +40,8 @@ fun FavouriteWeather(
             .background(Color.White)
             .fillMaxSize()
     ) {
-        DrawerButton(onToggleDrawer  = onToggleDrawer)
+
+        DrawerButton(onToggleDrawer = onToggleDrawer)
 
         Text(
             text = stringResource(R.string.favourite_title),
@@ -56,7 +57,7 @@ fun FavouriteWeather(
                 .background(Color.White)
                 .fillMaxSize()
         ) {
-            if (uiFavouriteState.favourite.equals("[]")) {
+            if (uiFavouriteState.favourite.toString().equals("[]")) {
                 Text(
                     text = stringResource(R.string.no_favourite),
                     style = MaterialTheme.typography.labelLarge,

@@ -1,7 +1,5 @@
 package com.dvt.weatherapp.utils
 
-import android.Manifest
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -48,26 +46,6 @@ object AppPermissions {
             }
         }
         return true
-    }
-
-    fun checkIfLocationPermissionIsEnabled(
-        context: Context
-    ) {
-        if (!hasPermissions(context, Manifest.permission.ACCESS_FINE_LOCATION)) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                ActivityCompat.requestPermissions(
-                    context as Activity,
-                    Constants.permissionsLocation,
-                    Constants.PERMISSION_ALL
-                )
-            } else {
-                ActivityCompat.requestPermissions(
-                    context as Activity,
-                    Constants.permissionsLocation,
-                    Constants.PERMISSION_ALL
-                )
-            }
-        }
     }
 
     fun validateAndForceLocationSetting(context: FragmentActivity) {

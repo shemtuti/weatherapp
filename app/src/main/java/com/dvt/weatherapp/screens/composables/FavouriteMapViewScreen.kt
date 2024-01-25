@@ -1,18 +1,24 @@
 package com.dvt.weatherapp.screens.composables
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -35,6 +41,7 @@ import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.ktx.awaitMap
 import org.koin.androidx.compose.koinViewModel
+import timber.log.Timber
 
 @Composable
 fun FavouriteMap(
@@ -44,11 +51,13 @@ fun FavouriteMap(
     val uiFavouriteState = viewModel.stateFavourite.collectAsState().value
     val mapView = rememberFavouriteMapViewWithLifecycle()
     var map : GoogleMap? by remember { mutableStateOf(null) }
+    var selectedMapType by remember { mutableIntStateOf(GoogleMap.MAP_TYPE_NORMAL) }
+    var expanded by remember { mutableStateOf(false) }
 
     LaunchedEffect(uiFavouriteState.favourite) {
         map = mapView.awaitMap()
         map?.uiSettings?.isZoomControlsEnabled = true
-        map?.mapType = GoogleMap.MAP_TYPE_NORMAL
+        map?.mapType = selectedMapType
     }
 
     Column(
@@ -69,6 +78,79 @@ fun FavouriteMap(
                 .padding(top = 1.dp, bottom = 10.dp)
         )
 
+        Box(modifier = Modifier
+            .background(Color.LightGray)
+        ) {
+            Text(
+                text = stringResource(R.string.select_map_type),
+                style = MaterialTheme.typography.labelLarge,
+                modifier = Modifier.padding(5.dp).clickable { expanded = true }
+            )
+
+            DropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false },
+                modifier = Modifier.background(Color.White),
+            ) {
+                DropdownMenuItem(
+                    text = {
+                        Text(
+                            text = "Normal",
+                            style = MaterialTheme.typography.labelLarge,
+                            modifier = Modifier.align(Alignment.CenterHorizontally),
+                        )
+                    },
+                    onClick = {
+                        selectedMapType = GoogleMap.MAP_TYPE_NORMAL
+                        expanded = false
+                        map?.mapType = selectedMapType
+                    }
+                )
+                DropdownMenuItem(
+                    text = {
+                        Text(
+                            text = "Satellite",
+                            style = MaterialTheme.typography.labelLarge,
+                            modifier = Modifier.align(Alignment.CenterHorizontally),
+                        )
+                    },
+                    onClick = {
+                        selectedMapType = GoogleMap.MAP_TYPE_SATELLITE
+                        expanded = false
+                        map?.mapType = selectedMapType
+                    }
+                )
+                DropdownMenuItem(
+                    text = {
+                        Text(
+                            text ="Hybrid",
+                            style = MaterialTheme.typography.labelLarge,
+                            modifier = Modifier.align(Alignment.CenterHorizontally),
+                        )
+                    },
+                    onClick = {
+                        selectedMapType = GoogleMap.MAP_TYPE_HYBRID
+                        expanded = false
+                        map?.mapType = selectedMapType
+                    }
+                )
+                DropdownMenuItem(
+                    text = {
+                        Text(
+                            "Terrain",
+                            style = MaterialTheme.typography.labelLarge,
+                            modifier = Modifier.align(Alignment.CenterHorizontally),
+                        )
+                    },
+                    onClick = {
+                        selectedMapType = GoogleMap.MAP_TYPE_TERRAIN
+                        expanded = false
+                        map?.mapType = selectedMapType
+                    }
+                )
+            }
+        }
+        Spacer(modifier = Modifier.height(5.dp))
         Box(
             modifier = Modifier
                 .background(Color.White)
@@ -91,12 +173,17 @@ fun FavouriteMap(
                                 bounds = bounds?.including(location)
                             }
 
-                            val markerOptions = MarkerOptions()
-                                .title(weather.locationName)
-                                .snippet(weather.currentWeatherDesc)
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker))
-                                .position(location)
-                            map?.addMarker(markerOptions)
+                            try {
+                                val markerOptions = MarkerOptions()
+                                    .title(weather.locationName)
+                                    .snippet(weather.currentWeatherDesc)
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker))
+                                    .position(location)
+                                map?.addMarker(markerOptions)
+                            }
+                            catch(e: Exception){
+                                Timber.e(e.message.toString())
+                            }
                         }
 
                         bounds?.let { validBounds ->

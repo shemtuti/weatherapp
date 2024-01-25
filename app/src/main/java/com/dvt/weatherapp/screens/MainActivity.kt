@@ -186,12 +186,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        //validateAndForceLocationSetting(this)
-        //checkAndRequestLocationPermission()
-
-        checkAndRequestLocationPermission()
-        validateAndForceLocationSetting(this)
-        client = LocationServices.getFusedLocationProviderClient(this)
         fetchWeatherData()
     }
 
