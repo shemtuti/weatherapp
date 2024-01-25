@@ -20,8 +20,7 @@ This is a weather forecast app which provides users with timely and current weat
 * Retrofit: A type-safe HTTP client (networking) for Android and Java.
 * Moshi: For parsing the JSON format.
 * Maps: Google play location library for getting the current location of device.
-* Version: Git and Github.
-* Plugins: 
+* Version Control: Git and Github.
 
 
 # Dependencies:
