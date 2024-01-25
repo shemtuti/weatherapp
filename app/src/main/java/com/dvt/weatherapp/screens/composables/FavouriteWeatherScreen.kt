@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -20,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.dvt.weatherapp.R
 import com.dvt.weatherapp.screens.components.DrawerButton
@@ -33,34 +33,43 @@ fun FavouriteWeather(
     viewModel: FavouriteViewModel = koinViewModel()
 ) {
     val uiFavouriteState = viewModel.stateFavourite.collectAsState().value
-
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top,
+        verticalArrangement = Arrangement.Center,
         modifier = Modifier
             .background(Color.White)
-            .fillMaxWidth()
-            .fillMaxHeight()
+            .fillMaxSize()
     ) {
         DrawerButton(onToggleDrawer  = onToggleDrawer)
+
+        Text(
+            text = stringResource(R.string.favourite_title),
+            style = MaterialTheme.typography.headlineSmall,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 1.dp, bottom = 10.dp)
+        )
+
         Box(
             modifier = Modifier
                 .background(Color.White)
                 .fillMaxSize()
         ) {
-            if (uiFavouriteState.favourite.isEmpty()) {
+            if (uiFavouriteState.favourite.equals("[]")) {
                 Text(
                     text = stringResource(R.string.no_favourite),
-                    style = MaterialTheme.typography.displayMedium,
+                    style = MaterialTheme.typography.labelLarge,
+                    textAlign = TextAlign.Center,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 20.dp)
+                        .align(Alignment.Center)
                 )
             } else {
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(2),
                     contentPadding = PaddingValues(16.dp),
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxSize()
                         .background(Color.White),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {

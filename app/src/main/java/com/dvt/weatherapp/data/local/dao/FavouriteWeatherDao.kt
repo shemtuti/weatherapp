@@ -18,7 +18,7 @@ interface FavouriteWeatherDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFavouriteWeather(favouriteTable: FavouriteTable)
 
-    @Query("SELECT * FROM favouriteweathertable ORDER BY dt DESC LIMIT 1")
+    @Query("SELECT * FROM favouriteweathertable ORDER BY id")
     fun getFavouriteWeather(): Flow<List<FavouriteTable>>
 
     @Delete

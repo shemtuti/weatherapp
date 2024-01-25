@@ -1,6 +1,5 @@
 package com.dvt.weatherapp.screens.composables
 
-import android.util.Log
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -42,10 +41,6 @@ fun ForecastWeather(
                         forecastDate = forecast.date
                         forecastDay = forecast.day
                         showDetails = true
-
-                        Log.e("##Date", forecastDate)
-                        Log.e("##Day", forecastDay)
-
                     })
                 }
             }
