@@ -24,7 +24,7 @@ internal class WeatherRepositoryImpl(
             try {
                 FetchResult.Loading
                 val currentWeatherResult  =
-                    apiService.getCurrentWeatherUsingLatLng(lat, lon, Constants.API_KEY)
+                    apiService.getCurrentWeatherUsingLatLng(lat, lon, Constants.WEATHER_API_KEY)
                 if(currentWeatherResult.isSuccessful) {
                     currentWeatherResult.body()?.apply {
                         val currentWeather = CurrentTable(
@@ -66,7 +66,7 @@ internal class WeatherRepositoryImpl(
             try {
                 FetchResult.Loading
                 val forecastResult =
-                    apiService.getForecastUsingLatLng(lat, lon, Constants.API_KEY)
+                    apiService.getForecastUsingLatLng(lat, lon, Constants.WEATHER_API_KEY)
                 if(forecastResult.isSuccessful) {
                     forecastResult.body()?.list?.forEach { item ->
                         val forecast = ForecastTable(

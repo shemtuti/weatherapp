@@ -1,2 +1,16 @@
 # Files to ignore
 .gradle/
+build/
+
+# Gradle lock files
+
+.gradle/8.2/checksums/checksums.lock
+.gradle/8.2/dependencies-accessors/dependencies-accessors.lock
+.gradle/8.2/dependencies-accessors/executionHistory.bin
+.gradle/8.2/executionHistory/executionHistory.bin
+.gradle/8.2/executionHistory/executionHistory.lock
+.gradle/8.2/fileHashes/fileHashes.bin
+.gradle/8.2/fileHashes/fileHashes.lock
+.gradle/8.2/fileHashes/resourceHashesCache.bin
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+.gradle/buildOutputCleanup/outputFiles.bin

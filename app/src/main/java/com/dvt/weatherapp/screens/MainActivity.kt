@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -45,6 +44,7 @@ import androidx.core.app.ActivityCompat
 import com.dvt.weatherapp.R
 import com.dvt.weatherapp.screens.components.HomeDrawerContent
 import com.dvt.weatherapp.screens.components.HomeDrawerOptions
+import com.dvt.weatherapp.screens.composables.FavouriteMap
 import com.dvt.weatherapp.screens.composables.FavouriteWeather
 import com.dvt.weatherapp.screens.composables.MainScreen
 import com.dvt.weatherapp.screens.viewmodels.WeatherViewModel
@@ -58,6 +58,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
     private val viewModel: WeatherViewModel by inject()
@@ -125,7 +126,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 HomeDrawerOptions.Map -> {
                     weatherAppTheme {
-                        MainScreen(onToggleDrawer = {
+                        FavouriteMap(onToggleDrawer = {
                             coroutineScope.launch {
                                 if (drawerState.isOpen) drawerState.close() else drawerState.open()
                             }
@@ -158,8 +159,8 @@ class MainActivity : AppCompatActivity() {
                 val lat = location?.latitude.toString()
                 val lon = location?.longitude.toString()
 
-                Log.e("##Lat", lat)
-                Log.e("##Lon", lon)
+                    Timber.i("##Lat: $lat")
+                    Timber.i("##Lon: $lon")
 
                 // Save to datasource
                 viewModel.saveLat(lat)
