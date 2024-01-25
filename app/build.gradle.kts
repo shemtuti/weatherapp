@@ -77,7 +77,6 @@ dependencies {
 
     // Retrofit for network requests
     implementation(libs.retrofit)
-    implementation(libs.converter.gson)
     implementation(libs.okhttp)
     implementation(libs.converter.moshi)
     implementation(libs.retrofit2.kotlin.coroutines.adapter)

@@ -51,7 +51,7 @@ fun MainScreen(
             .fillMaxHeight()
             .background(color = color)
     ) {
-        DrawerButton(onToggleDrawer  = onToggleDrawer)
+        DrawerButton(onToggleDrawer = onToggleDrawer)
 
         CurrentWeather(
             uiCurrentState,

@@ -19,7 +19,7 @@ fun DrawerButton(
 
     Box(
         Modifier
-            .padding(start = 10.dp, top = 10.dp, bottom = 10.dp)
+            .padding(start = 10.dp, top = 10.dp, bottom = 5.dp)
             .fillMaxWidth()
     ) {
         Icon(
