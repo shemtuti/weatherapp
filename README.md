@@ -69,12 +69,33 @@ This is a weather forecast app which provides users with timely and current weat
 <table>
 <tr>
 <td>
-<img width="800" height="400" src="./screenshots/homepage_1.jpeg"/>
+<img width="300" height="450" src="./screenshots/screenshot_1.jpeg"/>
 </td>
 </tr>
 <td>
-<img width="800" height="400" src="./screenshots/homepage_2.jpeg"/>
+<img width="300" height="450" src="./screenshots/screenshot_2.jpeg"/>
 </td>
 </tr>
+
+<tr>
+<td>
+<img width="300" height="450" src="./screenshots/screenshot_3.jpeg"/>
+</td>
+</tr>
+<td>
+<img width="300" height="450" src="./screenshots/screenshot_4.jpeg"/>
+</td>
+</tr>
+
+<tr>
+<td>
+<img width="300" height="450" src="./screenshots/screenshot_5.jpeg"/>
+</td>
+</tr>
+<td>
+<img width="300" height="450" src="./screenshots/screenshot_6.jpeg"/>
+</td>
+</tr>
+
 </table>
 
