@@ -43,56 +43,56 @@ fun FavouriteItem(
         modifier = Modifier
             .padding(top = 10.dp, bottom = 10.dp)
             .background(color),
-        shape = RoundedCornerShape(5.dp),
+        shape = RoundedCornerShape(10.dp),
         elevation = CardDefaults.cardElevation(500.dp),
     ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(15.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Column(modifier = Modifier.fillMaxWidth(0.5f)) {
-                    Text(
-                        text = Util.getFormatTemp(favourite.tempNormal) + stringResource(R.string.temp_symbol),
-                        style = MaterialTheme.typography.displayLarge,
-                    )
-                    Text(
-                        text = favourite.currentWeatherDesc,
-                        style = MaterialTheme.typography.displaySmall,
-                    )
-                }
-                Image(
-                    modifier = Modifier.size(40.dp),
-                    painter = rememberDrawablePainter(
-                        drawable = Util.getWeatherIconDrawable(
-                            context = context,
-                            favourite.currentWeather
-                        )
-                    ),
-                    contentDescription = stringResource(R.string.location_icon),
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(15.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column(modifier = Modifier.fillMaxWidth(0.5f)) {
+                Text(
+                    text = Util.getFormatTemp(favourite.tempNormal) + stringResource(R.string.temp_symbol),
+                    style = MaterialTheme.typography.displayLarge,
+                )
+                Text(
+                    text = favourite.currentWeatherDesc,
+                    style = MaterialTheme.typography.displaySmall,
                 )
             }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(15.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Column(modifier = Modifier.fillMaxWidth(0.7f)) {
-                    Text(
-                        text = favourite.locationName,
-                        style = MaterialTheme.typography.displayMedium,)
-                }
-                Column(verticalArrangement = Arrangement.Bottom) {
-                    Icon(
-                        imageVector = Icons.Outlined.Close,
-                        contentDescription = stringResource(R.string.delete_favourite),
-                        tint = Color(0xFFd68118),
-                        modifier = Modifier.size(20.dp).clickable {
-                            viewModel.deleteFavourite(favourite)
-                        })
-                }
+            Image(
+                modifier = Modifier.size(40.dp),
+                painter = rememberDrawablePainter(
+                    drawable = Util.getWeatherIconDrawable(
+                        context = context,
+                        favourite.currentWeather
+                    )
+                ),
+                contentDescription = stringResource(R.string.location_icon),
+            )
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(15.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column(modifier = Modifier.fillMaxWidth(0.7f)) {
+                Text(
+                    text = favourite.locationName,
+                    style = MaterialTheme.typography.displayMedium,)
+            }
+            Column(verticalArrangement = Arrangement.Bottom) {
+                Icon(
+                    imageVector = Icons.Outlined.Close,
+                    contentDescription = stringResource(R.string.delete_favourite),
+                    tint = Color(0xFFd68118),
+                    modifier = Modifier.size(20.dp).clickable {
+                        viewModel.deleteFavourite(favourite)
+                    })
+            }
         }
     }
 }

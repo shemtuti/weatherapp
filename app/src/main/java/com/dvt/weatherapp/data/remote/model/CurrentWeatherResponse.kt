@@ -19,14 +19,8 @@ data class CurrentWeatherResponse (
     val wind: Wind,
     @Json(name = "rain")
     val rain: Rain?,
-    @Json(name = "clouds")
-    val clouds: Clouds,
     @Json(name = "dt")
     val dt: Int,
-    @Json(name = "sys")
-    val sys: Sys,
-    @Json(name = "timezone")
-    val timezone: Int,
     @Json(name = "name")
     val name: String
 )
@@ -88,9 +82,9 @@ data class Clouds(
 @JsonClass(generateAdapter = true)
 data class Sys(
     @Json(name = "country")
-    val country: String,
+    val country: String?,
     @Json(name = "sunrise")
-    val sunrise: String,
+    val sunrise: String?,
     @Json(name = "sunset")
-    val sunset: String
+    val sunset: String?
 )

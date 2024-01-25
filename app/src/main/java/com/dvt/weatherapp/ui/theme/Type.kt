@@ -100,4 +100,11 @@ val Typography = Typography(
         lineHeight = 24.sp,
         color = Color.White,
     ),
+    labelLarge = TextStyle(
+        fontFamily = JosefinSans,
+        fontWeight = FontWeight.Light,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        color = Color.DarkGray,
+    ),
 )
