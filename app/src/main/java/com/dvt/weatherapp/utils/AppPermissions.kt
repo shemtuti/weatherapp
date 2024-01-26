@@ -89,11 +89,11 @@ object AppPermissions {
     }
 
     private fun checkIfLocationIsEnabledDialog(context: Context) {
-        val builder =
-            AlertDialog.Builder(context)
-        builder.setTitle(context.getString(R.string.loc_info_title))
+        val builder = AlertDialog.Builder(context)
+        builder.setIcon(R.drawable.ic_no_location)
+        builder.setTitle(context.getString(R.string.no_loc_title))
         builder.setMessage(
-            context.getString(R.string.loc_info_message),
+            context.getString(R.string.no_loc_message),
         )
         builder.setCancelable(false)
         builder.setPositiveButton(

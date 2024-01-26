@@ -2,30 +2,19 @@ package com.dvt.weatherapp.screens
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -33,13 +22,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import com.dvt.weatherapp.R
 import com.dvt.weatherapp.screens.components.HomeDrawerContent
@@ -68,14 +50,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val isConnected: Boolean = isInternetAvailable(this)
-
         if (isConnected) {
             setContent {
                 HomeScreen(this)
             }
         } else {
             setContent {
-                NoInternetConnection(this)
+                InternetCheck(this)
+
+                // NoInternetConnection(this)
             }
         }
     }
@@ -139,7 +122,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun fetchWeatherData() {
+    fun fetchWeatherData() {
         if (hasLocationPermission()) {
             if (ActivityCompat.checkSelfPermission(
                     this,
@@ -159,6 +142,9 @@ class MainActivity : AppCompatActivity() {
 
                     Timber.i("##Lat: $lat")
                     Timber.i("##Lon: $lon")
+
+                    Log.e("##Lat", lat)
+                    Log.e("##Lon", lon)
 
                     // Save to datasource
                     viewModel.saveLat(lat)
@@ -184,6 +170,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        client = LocationServices.getFusedLocationProviderClient(this)
         fetchWeatherData()
     }
 
@@ -227,69 +214,35 @@ class MainActivity : AppCompatActivity() {
 }
 
 @Composable
-fun NoInternetConnection(context: Context) {
-    weatherAppTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.primary,
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(start = 15.dp, end = 15.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                val imagePainter = painterResource(id = R.drawable.ic_no_internet)
+private fun InternetCheck(context: Context) {
+    val builder = AlertDialog.Builder(context)
+    builder.setIcon(R.drawable.ic_no_internet)
+    builder.setTitle(context.getString(R.string.no_internet_title))
+    builder.setMessage(
+        context.getString(R.string.no_internet_message),
+    )
+    builder.setCancelable(true)
+    builder.setPositiveButton(
+        context.getString(R.string.loc_btn_agree),
+    ) { dialog, which ->
+        dialog.dismiss()
+        val myIntent = Intent(
+            Settings.ACTION_WIRELESS_SETTINGS,
+        )
+        context.startActivity(myIntent)
 
-                Image(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 15.dp, end = 15.dp)
-                        .size(40.dp),
-                    painter = imagePainter,
-                    contentDescription = "No Internet Icon",
-                )
-                Spacer(modifier = Modifier.height(20.dp))
-                Text(
-                    stringResource(R.string.no_internet_connection),
-                    style = MaterialTheme.typography.titleMedium,
-                    color = Color.DarkGray,
-                    textAlign = TextAlign.Center,
-                )
-                Spacer(modifier = Modifier.height(20.dp))
-                InternetCheckButton(context)
-            }
+        (context as MainActivity).setContent {
+            context.HomeScreen(context)
         }
     }
-}
-
-@Composable
-private fun InternetCheckButton(context: Context) {
-    TextButton(
-        onClick = {
-            val isConnected: Boolean = isInternetAvailable(context)
-            if (isConnected) {
-                // Update the app's content to display the HomeScreen composable
-                (context as MainActivity).setContent {
-                    context.HomeScreen(context)
-                }
-            } else {
-                // Update the app's content to display the NoConnection composable
-                (context as MainActivity).setContent {
-                    NoInternetConnection(context)
-                }
-            }
-        },
-        modifier = Modifier.fillMaxWidth().padding(start = 15.dp, end = 15.dp),
-        shape = RoundedCornerShape(10.dp),
-        colors = ButtonDefaults.textButtonColors(containerColor = Color(0xFF54717A)),
-        elevation = ButtonDefaults.buttonElevation(4.dp),
-    ) {
-        Text(
-            text = stringResource(R.string.try_again),
-            style = MaterialTheme.typography.titleMedium,
-            textAlign = TextAlign.Center,
-        )
+    builder.setNegativeButton(
+        context.getString(R.string.loc_btn_disagree),
+    ) { dialog, which ->
+        dialog.dismiss()
+        // Update the app's content to display the HomeScreen composable
+        (context as MainActivity).setContent {
+            context.HomeScreen(context)
+        }
     }
+    builder.show()
 }

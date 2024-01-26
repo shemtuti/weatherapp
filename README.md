@@ -43,7 +43,7 @@ This is a weather forecast app which provides users with timely and current weat
 
 * The dependencies' references can be found within libs.version.toml file.
 
-# Static Code Analysis
+# Static Code Analysis:
 This Weather App uses spotlessApply to ensure there is consistent code formatting throughout the code. It uses checks defined via .editorconfig file. SpotlessApply is automatically trigger before committing (pre-commit) code to remote repository. Always a good practise at minimal to run spotlessCheck, spotlessApply and ktlintCheck.
 
 To run the static checks for the app use: (Within the terminal)
@@ -61,13 +61,13 @@ To run the static checks for the app use: (Within the terminal)
 * Weather API key - ensure as a Developer you have a valid weather api key so as to be able to fetch weather information needed; Documentation: Current weather data - https://openweathermap.org/current and 5 day weather forecast - https://openweathermap.org/forecast5
 
 
-# How it's build
+# How it's build:
 - After setting up your API keys needed for the project, import/add them within the app and reference them accordingly. That is, Google Map API should be set within the Manifest file within application tag. Also add the dependecies needed as shown above under dependencies. Then also import the Open Weather API and reference it to when calling the API keys. See Constants.kt file.
 
 
-# More info:
-* No online tool used to generate models.
-* No bugs yet observed in the app but there is still a few tweaks which can be done. Incase of any bugs, any feedback will be highly appreciated.
+# NOTE:
+* During initial launch, the app sometimes does not pick your current location coordinates(latlng), kindly ensure location is on and relaunch incase it does not pick your coordinates automatically.
+* No major bugs yet observed in the app but there is still a few tweaks which can be done since the app is still under development. Incase of any bugs, any feedback will be highly appreciated.
 
 
 # TO-DO:

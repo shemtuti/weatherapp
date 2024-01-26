@@ -121,7 +121,7 @@ fun CurrentWeather(
                 )
                 Spacer(modifier = Modifier.width(3.dp))
                 Text(
-                    text = uiCurrentState.weather?.locationName.toString(),
+                    text = uiCurrentState.weather?.locationName ?: "",
                     style = MaterialTheme.typography.headlineSmall,
                     textAlign = TextAlign.Center,
                 )
@@ -137,8 +137,7 @@ fun CurrentWeather(
             )
             Spacer(modifier = Modifier.height(10.dp))
             Text(
-                text = uiCurrentState.weather?.currentWeatherDesc.toString()
-                    .uppercase(Locale.getDefault()),
+                text = uiCurrentState.weather?.currentWeatherDesc?.uppercase(Locale.getDefault()) ?: "",
                 style = MaterialTheme.typography.headlineMedium,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.align(Alignment.CenterHorizontally),
