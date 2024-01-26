@@ -3,7 +3,6 @@ package com.dvt.weatherapp.data.local.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-
 @Entity(tableName = "ForecastWeatherTable")
 data class ForecastTable(
     @PrimaryKey
@@ -18,5 +17,5 @@ data class ForecastTable(
     val tempMin: Double?,
     val humidity: Int?,
     val partOfTheDay: String?,
-    val timeForecasted: String?
+    val timeForecasted: String?,
 )

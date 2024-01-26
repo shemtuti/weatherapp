@@ -1,17 +1,17 @@
+
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
-import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.libsDirectory
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
-    id("com.android.application") version "8.2.0" apply false
-    id("org.jetbrains.kotlin.android") version "1.9.0" apply false
-    id("com.google.devtools.ksp") version "1.9.21-1.0.16" apply false
-    id("com.google.gms.google-services") version "4.4.0" apply false
-    id("com.diffplug.spotless") version "6.25.0" apply false
-    id("org.jlleitschuh.gradle.ktlint") version "12.1.0" apply false
-    alias(libs.plugins.com.google.android.libraries.mapsplatform.secrets.gradle.plugin) apply false
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.jetbrains.android) apply false
+    alias(libs.plugins.google.services) apply false
+    alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.spotless) apply false
+    alias(libs.plugins.ktlint.gradle) apply false
+    alias(libs.plugins.googlemaps.platform) apply false
 }
 
 apply(from = "buildscripts/git-hooks.gradle")
@@ -30,7 +30,7 @@ allprojects {
         }
     }
 
-    val ktlintVersion = "1.0.1"
+    val ktlintVersion = rootProject.libs.versions.ktlintVersion.get()
 
     apply<org.jlleitschuh.gradle.ktlint.KtlintPlugin>()
 
