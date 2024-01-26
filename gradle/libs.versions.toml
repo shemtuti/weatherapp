@@ -1,4 +1,6 @@
 [versions]
+ap = "8.2.0"
+gServices = "4.4.0"
 accompanistDrawablepainter = "0.32.0"
 accompanistPermissions = "0.32.0"
 activityCompose = "1.8.2"
@@ -10,6 +12,8 @@ junitVersion = "1.1.5"
 junit = "4.13.2"
 koinAndroid = "3.5.0"
 ktlintGradle = "12.1.0"
+ksp = "1.9.21-1.0.16"
+ktlintVersion = "1.0.1"
 lifecycleRuntimeKtx = "2.7.0"
 loggingInterceptor = "5.0.0-alpha.2"
 mapsCompose = "2.7.2"
@@ -30,7 +34,7 @@ roomKtx = "2.6.1"
 spotless = "6.25.0"
 timberVersion = "5.0.0"
 kotlin = "1.9.0"
-com-google-android-libraries-mapsplatform-secrets-gradle-plugin = "2.0.1"
+googleMapsPlatform = "2.0.1"
 appcompat = "1.6.1"
 constraintlayout = "2.1.4"
 
@@ -74,7 +78,10 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 
 
 [plugins]
+android-application = { id = "com.android.application", version.ref = "ap" }
+google-services = { id = "com.google.gms.google-services", version.ref = "gServices" }
 ktlint-gradle = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlintGradle" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
-kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-com-google-android-libraries-mapsplatform-secrets-gradle-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "com-google-android-libraries-mapsplatform-secrets-gradle-plugin" }
+jetbrains-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+googlemaps-platform = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "googleMapsPlatform" }

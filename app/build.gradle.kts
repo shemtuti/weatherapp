@@ -4,7 +4,7 @@ plugins {
     id("kotlin-kapt")
     id("kotlin-android")
     id("com.google.devtools.ksp")
-    alias(libs.plugins.com.google.android.libraries.mapsplatform.secrets.gradle.plugin)
+    alias(libs.plugins.googlemaps.platform)
 }
 
 android {

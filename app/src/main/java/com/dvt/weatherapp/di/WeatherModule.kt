@@ -1,8 +1,8 @@
 package com.dvt.weatherapp.di
 
 import com.dvt.weatherapp.data.remote.api.ApiService
-import com.dvt.weatherapp.repository.WeatherRepository
-import com.dvt.weatherapp.repository.WeatherRepositoryImpl
+import com.dvt.weatherapp.data.repository.WeatherRepository
+import com.dvt.weatherapp.data.repository.WeatherRepositoryImpl
 import com.dvt.weatherapp.screens.viewmodels.FavouriteViewModel
 import com.dvt.weatherapp.screens.viewmodels.WeatherViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel

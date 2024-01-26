@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dvt.weatherapp.data.local.model.FavouriteTable
 import com.dvt.weatherapp.data.local.model.FavouriteWeatherState
-import com.dvt.weatherapp.repository.WeatherRepository
+import com.dvt.weatherapp.data.repository.WeatherRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

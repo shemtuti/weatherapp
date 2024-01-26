@@ -13,7 +13,12 @@ This is a weather forecast app which provides users with timely and current weat
 * Language: Kotlin - a statically typed programming language used for development of this android app.
 * UI: Jetpack Compose - a modern UI toolkit for building android applications.
 * Navigation: Jetpack Navigation - a library for building navigation on android.
-* Architecture: MVVM design principles so as to have a structured and maitainable approach to the UI development through separation of concerns for ease of maintainability and testability of code.
+* Architecture: MVVM design principles are used so as to have a structured and maintainable approach to the UI development through separation of concerns for ease of maintainability and testability of code. The app
+    * The app is mainly divided into the following layers:
+      1. UI - includes screens/composables, standard components/designs which can be used through out the app and state holders (that is, ViewModels).
+      2. Data - includes local and remote data sources, and repository together with its implementation for the app.
+      3. DI - includes all data injection files are hosted here.
+      4. Utils - not standard or mandatory to have but good to have so as to host various files which may have reusable methods or functions.
 * Room: SQLite database for Android to store data locally.
 * Dependency Injection(DI): Koin - a light weight DI for android development.
 * Coroutines: Flow for asynchronous data streaming.
@@ -35,14 +40,15 @@ This is a weather forecast app which provides users with timely and current weat
 	* Viewmodel: ('androidx.lifecycle:lifecycle-viewmodel-compose:{version}') - to store and manage UI-related data in a lifecycle conscious way.
 	* Lifecycle: ('androidx.lifecycle:lifecycle-runtime-ktx:{version}') - kotlin extensions to perform action when lifecycle states changes.
 
-		
-* The dependencies' references can be found within libs.version.toml file.	
 
+* The dependencies' references can be found within libs.version.toml file.
+
+# Static Code Analysis
+This Weather App uses spotlessApply to ensure there is consistent code formatting throughout the code. It uses checks defined via .editorconfig file.
 
 # Permissions:
 * Access to Internet - needed for connection to the API so as to fetch the weather data. If user is not connected to the Internet the app will prompt the user to do so.
 * Access to Location - needed so as to get device's current location(latitude and longitude) used to fetch the current location weather condition and the 5-day forecast. The app will prompt the user to grant permission to user location.
-
 
 
 # Pre-requisities & API Documentation:
@@ -60,8 +66,7 @@ This is a weather forecast app which provides users with timely and current weat
 
 
 # TO-DO:
-* 1. Spotless initial setup has been done but encountered a few bugs. To be worked on.
-* 2. Tests - also write test cases for the app.
+1. Tests - also write test cases for the app.
 
 
 # Screenshots:
@@ -75,8 +80,6 @@ This is a weather forecast app which provides users with timely and current weat
 		<img src="./screenshots/screenshot_1.jpeg"/>
 	</td>
 </tr>
-
-	</br>
 
 <tr>
 	<td>

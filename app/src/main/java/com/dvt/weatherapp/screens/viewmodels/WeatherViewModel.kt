@@ -6,7 +6,7 @@ import com.dvt.weatherapp.data.local.model.CurrentWeatherState
 import com.dvt.weatherapp.data.local.model.ForecastDayWeatherState
 import com.dvt.weatherapp.data.local.model.ForecastWeatherState
 import com.dvt.weatherapp.data.remote.model.FetchResult
-import com.dvt.weatherapp.repository.WeatherRepository
+import com.dvt.weatherapp.data.repository.WeatherRepository
 import com.dvt.weatherapp.utils.AppPreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

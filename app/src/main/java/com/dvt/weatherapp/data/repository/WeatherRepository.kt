@@ -1,4 +1,4 @@
-package com.dvt.weatherapp.repository
+package com.dvt.weatherapp.data.repository
 
 import com.dvt.weatherapp.data.local.model.CurrentTable
 import com.dvt.weatherapp.data.local.model.FavouriteTable

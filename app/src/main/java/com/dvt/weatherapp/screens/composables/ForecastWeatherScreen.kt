@@ -1,5 +1,6 @@
 package com.dvt.weatherapp.screens.composables
 
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -20,7 +21,7 @@ import com.dvt.weatherapp.screens.components.ForecastListDetails
 import com.dvt.weatherapp.screens.components.ForecastListItems
 import com.dvt.weatherapp.utils.Util
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun ForecastWeather(
     uiForestState: ForecastWeatherState,
