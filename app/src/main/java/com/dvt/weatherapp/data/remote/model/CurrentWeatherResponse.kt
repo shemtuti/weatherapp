@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class CurrentWeatherResponse (
+data class CurrentWeatherResponse(
     @Json(name = "coord")
     val coord: Coord,
     @Json(name = "weather")
@@ -22,7 +22,7 @@ data class CurrentWeatherResponse (
     @Json(name = "dt")
     val dt: Int,
     @Json(name = "name")
-    val name: String
+    val name: String,
 )
 
 @JsonClass(generateAdapter = true)
@@ -30,7 +30,7 @@ data class Coord(
     @Json(name = "lon")
     val lon: Double,
     @Json(name = "lat")
-    val lat: Double
+    val lat: Double,
 )
 
 @JsonClass(generateAdapter = true)
@@ -46,7 +46,7 @@ data class Weather(
 )
 
 @JsonClass(generateAdapter = true)
-data class Main (
+data class Main(
     @Json(name = "temp")
     val temp: Double,
     @Json(name = "feels_like")
@@ -64,19 +64,19 @@ data class Main (
 @JsonClass(generateAdapter = true)
 data class Wind(
     @Json(name = "speed")
-    val speed: Double
+    val speed: Double,
 )
 
 @JsonClass(generateAdapter = true)
 data class Rain(
     @Json(name = "1h")
-    val rain1h: Double
+    val rain1h: Double,
 )
 
 @JsonClass(generateAdapter = true)
 data class Clouds(
     @Json(name = "all")
-    val all: Int
+    val all: Int,
 )
 
 @JsonClass(generateAdapter = true)
@@ -86,5 +86,5 @@ data class Sys(
     @Json(name = "sunrise")
     val sunrise: String?,
     @Json(name = "sunset")
-    val sunset: String?
+    val sunset: String?,
 )

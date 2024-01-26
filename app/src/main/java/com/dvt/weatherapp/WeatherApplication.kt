@@ -5,7 +5,6 @@ import com.dvt.weatherapp.di.databaseModule
 import com.dvt.weatherapp.di.networkModule
 import com.dvt.weatherapp.di.preferenceModule
 import com.dvt.weatherapp.di.weatherModule
-import com.google.android.gms.maps.MapsInitializer
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

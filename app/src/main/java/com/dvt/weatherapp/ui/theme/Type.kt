@@ -16,7 +16,7 @@ val JosefinSans = FontFamily(
     Font(R.font.josefinsans_semibold),
     Font(R.font.josefinsans_regular),
     Font(R.font.josefinsans_italic),
-    Font(R.font.josefinsans_light)
+    Font(R.font.josefinsans_light),
 )
 
 // Set of Material typography styles to start with

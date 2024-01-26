@@ -29,7 +29,7 @@ import org.koin.androidx.compose.koinViewModel
 fun MainScreen(
     onToggleDrawer: () -> Unit,
     viewModel: WeatherViewModel = koinViewModel(),
-    viewModelFavourite: FavouriteViewModel = koinViewModel()
+    viewModelFavourite: FavouriteViewModel = koinViewModel(),
 ) {
     val uiCurrentState = viewModel.stateCurrentWeather.collectAsState().value
     val uiForestState = viewModel.stateForecastWeather.collectAsState().value
@@ -39,7 +39,7 @@ fun MainScreen(
 
     val currentLocation = uiCurrentState.weather?.locationName
 
-    if(currentLocation.toString().isNotEmpty()){
+    if (currentLocation.toString().isNotEmpty()) {
         viewModelFavourite.checkIsFavouriteStatus(currentLocation.toString())
     }
 
@@ -49,7 +49,7 @@ fun MainScreen(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .background(color = color)
+            .background(color = color),
     ) {
         DrawerButton(onToggleDrawer = onToggleDrawer)
 
@@ -68,14 +68,16 @@ fun MainScreen(
                     locationName = uiCurrentState.weather?.locationName ?: "",
                 )
                 viewModelFavourite.saveFavouriteWeather(favourite)
-            })
+            },
+        )
 
         Spacer(Modifier.size(15.dp))
 
         Divider(
             color = Color.White,
             thickness = 0.7.dp,
-            modifier = Modifier.fillMaxWidth())
+            modifier = Modifier.fillMaxWidth(),
+        )
 
         Spacer(Modifier.size(15.dp))
 
@@ -90,10 +92,10 @@ fun MainScreen(
                     .align(Alignment.End),
                 text = String.format(
                     "Last checked %s",
-                    Util.getTimeOfDataCalculation(uiCurrentState.weather?.dt)
+                    Util.getTimeOfDataCalculation(uiCurrentState.weather?.dt),
                 ),
                 style = MaterialTheme.typography.labelSmall,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
         }
     }

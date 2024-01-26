@@ -55,21 +55,20 @@ class WeatherViewModel(
             when (val currentResult = repository.getRemoteCurrentWeather(lat, lon)) {
                 is FetchResult.Loading -> {
                     _stateCurrent.value = stateCurrent.value.copy(
-                        isRefreshingWeather = true
+                        isRefreshingWeather = true,
                     )
                 }
                 is FetchResult.Success -> {
                     _stateCurrent.value = stateCurrent.value.copy(
-                        isSuccessWeather = true
+                        isSuccessWeather = true,
                     )
                 }
                 is FetchResult.Error -> {
                     _stateCurrent.value = stateCurrent.value.copy(
                         isErrorWeather = true,
-                        currentErrorMessage = "$TAG ${currentResult.exception.message}"
+                        currentErrorMessage = "$TAG ${currentResult.exception.message}",
                     )
                 }
-
             }
         }
     }
@@ -82,21 +81,20 @@ class WeatherViewModel(
             when (val currentResult = repository.getRemoteForecastWeather(lat, lon)) {
                 is FetchResult.Loading -> {
                     _stateForecast.value = stateForecast.value.copy(
-                        isRefreshingForecast = true
+                        isRefreshingForecast = true,
                     )
                 }
                 is FetchResult.Success -> {
                     _stateForecast.value = stateForecast.value.copy(
-                        isSuccessForecast = true
+                        isSuccessForecast = true,
                     )
                 }
                 is FetchResult.Error -> {
                     _stateForecast.value = stateForecast.value.copy(
                         isErrorForecast = true,
-                        forecastErrorMessage = "$TAG ${currentResult.exception.message}"
+                        forecastErrorMessage = "$TAG ${currentResult.exception.message}",
                     )
                 }
-
             }
         }
     }
@@ -111,7 +109,7 @@ class WeatherViewModel(
 
     val stateCurrentWeather = combine(_stateCurrentWeather, _currentWeather) { stateCurrentWeather, currentWeather ->
         stateCurrentWeather.copy(
-            weather = currentWeather
+            weather = currentWeather,
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(1000), CurrentWeatherState())
 
@@ -125,7 +123,7 @@ class WeatherViewModel(
 
     val stateForecastWeather = combine(_stateForecastWeather, _forecastWeather) { stateForecastWeather, forecastWeather ->
         stateForecastWeather.copy(
-            forecast = forecastWeather
+            forecast = forecastWeather,
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(1000), ForecastWeatherState())
 

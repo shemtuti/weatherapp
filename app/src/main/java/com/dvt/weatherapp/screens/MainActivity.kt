@@ -69,12 +69,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val isConnected: Boolean = isInternetAvailable(this)
 
-        if(isConnected) {
+        if (isConnected) {
             setContent {
                 HomeScreen(this)
             }
-        }
-        else {
+        } else {
             setContent {
                 NoInternetConnection(this)
             }
@@ -100,7 +99,6 @@ class MainActivity : AppCompatActivity() {
                         },
                         currentRoute = drawerRoute,
                     )
-
                 }
             },
             drawerState = drawerState,
@@ -145,30 +143,30 @@ class MainActivity : AppCompatActivity() {
         if (hasLocationPermission()) {
             if (ActivityCompat.checkSelfPermission(
                     this,
-                    Manifest.permission.ACCESS_FINE_LOCATION
+                    Manifest.permission.ACCESS_FINE_LOCATION,
                 ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                     this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
                 return
             }
             client.lastLocation
                 .addOnSuccessListener { location: Location? ->
-                // Get latitude and longitude
-                val lat = location?.latitude.toString()
-                val lon = location?.longitude.toString()
+                    // Get latitude and longitude
+                    val lat = location?.latitude.toString()
+                    val lon = location?.longitude.toString()
 
                     Timber.i("##Lat: $lat")
                     Timber.i("##Lon: $lon")
 
-                // Save to datasource
-                viewModel.saveLat(lat)
-                viewModel.saveLon(lon)
+                    // Save to datasource
+                    viewModel.saveLat(lat)
+                    viewModel.saveLon(lon)
 
-                viewModel.getRemoteCurrentWeather(lat, lon)
-                viewModel.getRemoteForecastWeather(lat, lon)
-            }
+                    viewModel.getRemoteCurrentWeather(lat, lon)
+                    viewModel.getRemoteForecastWeather(lat, lon)
+                }
         } else {
             requestLocationPermission()
         }
@@ -176,7 +174,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        //checkIfLocationPermissionIsEnabled(this)
+        // checkIfLocationPermissionIsEnabled(this)
 
         checkAndRequestLocationPermission()
         validateAndForceLocationSetting(this)
@@ -202,16 +200,18 @@ class MainActivity : AppCompatActivity() {
     private fun requestLocationPermission() {
         ActivityCompat.requestPermissions(
             this,
-            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION),
-            Constants.PERMISSION_REQUEST_LOCATION
+            arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+            ),
+            Constants.PERMISSION_REQUEST_LOCATION,
         )
     }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == Constants.PERMISSION_REQUEST_LOCATION) {
@@ -231,14 +231,14 @@ fun NoInternetConnection(context: Context) {
     weatherAppTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.primary
+            color = MaterialTheme.colorScheme.primary,
         ) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(start = 15.dp, end = 15.dp),
                 verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 val imagePainter = painterResource(id = R.drawable.ic_no_internet)
 
@@ -255,7 +255,7 @@ fun NoInternetConnection(context: Context) {
                     stringResource(R.string.no_internet_connection),
                     style = MaterialTheme.typography.titleMedium,
                     color = Color.DarkGray,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 InternetCheckButton(context)
@@ -284,7 +284,7 @@ private fun InternetCheckButton(context: Context) {
         modifier = Modifier.fillMaxWidth().padding(start = 15.dp, end = 15.dp),
         shape = RoundedCornerShape(10.dp),
         colors = ButtonDefaults.textButtonColors(containerColor = Color(0xFF54717A)),
-        elevation = ButtonDefaults.buttonElevation(4.dp)
+        elevation = ButtonDefaults.buttonElevation(4.dp),
     ) {
         Text(
             text = stringResource(R.string.try_again),
@@ -293,5 +293,3 @@ private fun InternetCheckButton(context: Context) {
         )
     }
 }
-
-

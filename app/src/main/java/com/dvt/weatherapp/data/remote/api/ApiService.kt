@@ -22,5 +22,4 @@ interface ApiService {
         @Query("appid") exclude: String,
         @Query("units") units: String = "metric",
     ): Response<ForecastWeatherResponse>
-
 }

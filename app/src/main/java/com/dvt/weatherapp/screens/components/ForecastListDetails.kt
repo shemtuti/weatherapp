@@ -35,7 +35,7 @@ import org.koin.androidx.compose.koinViewModel
 fun ForecastListDetails(
     forecastDate: String,
     forecastDay: String,
-    viewModel: WeatherViewModel = koinViewModel()
+    viewModel: WeatherViewModel = koinViewModel(),
 ) {
     var uiForecastDetailsState by remember { mutableStateOf<List<ForecastDayWeatherState>?>(null) }
 
@@ -52,7 +52,7 @@ fun ForecastListDetails(
         modifier = Modifier
             .padding(10.dp)
             .wrapContentHeight()
-            .fillMaxWidth()
+            .fillMaxWidth(),
     ) {
         Text(
             text = "Weather Forecast for $forecastDay",
@@ -70,12 +70,12 @@ fun ForecastListDetails(
             .fillMaxWidth()
             .padding(end = 14.dp)
             .padding(start = 14.dp)
-            .padding(top = 8.dp)
+            .padding(top = 8.dp),
     ) {
         FlowRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+            verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             Text(
                 text = stringResource(R.string.time),
@@ -114,6 +114,4 @@ fun ForecastListDetails(
     }
 
     Spacer(modifier = Modifier.height(10.dp))
-
-
 }

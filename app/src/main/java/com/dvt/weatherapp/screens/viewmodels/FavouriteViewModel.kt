@@ -27,7 +27,7 @@ class FavouriteViewModel(
 
     val stateFavourite = combine(_stateFavourite, _favourite) { stateFavourite, favouriteWeather ->
         stateFavourite.copy(
-            favourite = favouriteWeather
+            favourite = favouriteWeather,
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(1000), FavouriteWeatherState())
 
@@ -70,7 +70,6 @@ class FavouriteViewModel(
         viewModelScope.launch {
             // repository.checkIsFavouriteStatus(name)
             _isLocationNameExists.value = repository.checkIsFavouriteStatus(name)
-
         }
     }
     private companion object {

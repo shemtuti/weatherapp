@@ -24,7 +24,7 @@ import com.google.accompanist.drawablepainter.rememberDrawablePainter
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun DetailsItem(
-    item: ForecastDayWeatherState
+    item: ForecastDayWeatherState,
 ) {
     val context = LocalContext.current
     Box(
@@ -33,13 +33,12 @@ fun DetailsItem(
             .fillMaxWidth()
             .padding(end = 14.dp)
             .padding(start = 14.dp)
-            .padding(top = 5.dp)
+            .padding(top = 5.dp),
     ) {
-
         FlowRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+            verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             Text(
                 text = item.time.toString(),
@@ -56,8 +55,8 @@ fun DetailsItem(
                 painter = rememberDrawablePainter(
                     drawable = Util.getWeatherIconDrawable(
                         context = context,
-                        item.currentWeather
-                    )
+                        item.currentWeather,
+                    ),
                 ),
                 contentDescription = stringResource(R.string.weather_icon),
             )
@@ -69,7 +68,7 @@ fun DetailsItem(
 
             Text(
                 text = String.format(
-                    Util.getFormatTemp(item.tempMax) + stringResource(R.string.temp_symbol)
+                    Util.getFormatTemp(item.tempMax) + stringResource(R.string.temp_symbol),
                 ),
                 style = MaterialTheme.typography.displayMedium,
             )

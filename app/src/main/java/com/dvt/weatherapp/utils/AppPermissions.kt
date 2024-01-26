@@ -32,13 +32,13 @@ object AppPermissions {
 
     fun hasPermissions(
         context: Context?,
-        vararg permissions: String
+        vararg permissions: String,
     ): Boolean {
         if (context != null) {
             for (permission in permissions) {
                 if (ActivityCompat.checkSelfPermission(
                         context,
-                        permission
+                        permission,
                     ) !== PackageManager.PERMISSION_GRANTED
                 ) {
                     return false
@@ -55,13 +55,13 @@ object AppPermissions {
         if (!hasPermissions(
                 context,
                 Constants.permissionsLocation[0],
-                Constants.permissionsLocation[1]
+                Constants.permissionsLocation[1],
             )
         ) {
             ActivityCompat.requestPermissions(
                 Objects.requireNonNull(context),
                 Constants.permissionsLocation,
-                1
+                1,
             )
         }
     }
@@ -73,7 +73,7 @@ object AppPermissions {
             try {
                 locationMode = Settings.Secure.getInt(
                     context.contentResolver,
-                    Settings.Secure.LOCATION_MODE
+                    Settings.Secure.LOCATION_MODE,
                 )
             } catch (e: Settings.SettingNotFoundException) {
                 e.printStackTrace()
@@ -82,7 +82,7 @@ object AppPermissions {
         } else {
             locationProviders = Settings.Secure.getString(
                 context.contentResolver,
-                Settings.Secure.LOCATION_PROVIDERS_ALLOWED
+                Settings.Secure.LOCATION_PROVIDERS_ALLOWED,
             )
             !TextUtils.isEmpty(locationProviders)
         }
@@ -93,15 +93,15 @@ object AppPermissions {
             AlertDialog.Builder(context)
         builder.setTitle(context.getString(R.string.loc_info_title))
         builder.setMessage(
-            context.getString(R.string.loc_info_message)
+            context.getString(R.string.loc_info_message),
         )
         builder.setCancelable(false)
         builder.setPositiveButton(
-            context.getString(R.string.loc_btn_agree)
+            context.getString(R.string.loc_btn_agree),
         ) { dialog, which ->
             dialog.dismiss()
             val myIntent = Intent(
-                Settings.ACTION_LOCATION_SOURCE_SETTINGS
+                Settings.ACTION_LOCATION_SOURCE_SETTINGS,
             )
             context.startActivity(myIntent)
         }

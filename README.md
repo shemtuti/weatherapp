@@ -44,7 +44,12 @@ This is a weather forecast app which provides users with timely and current weat
 * The dependencies' references can be found within libs.version.toml file.
 
 # Static Code Analysis
-This Weather App uses spotlessApply to ensure there is consistent code formatting throughout the code. It uses checks defined via .editorconfig file.
+This Weather App uses spotlessApply to ensure there is consistent code formatting throughout the code. It uses checks defined via .editorconfig file. SpotlessApply is automatically trigger before committing (pre-commit) code to remote repository. Always a good practise at minimal to run spotlessCheck, spotlessApply and ktlintCheck.
+
+To run the static checks for the app use: (Within the terminal)
+1. ./gradlew spotlessApply - to apply formatting and fix violations.
+2. ./gradlew spotlessCheck - to check violations without applying formatting.
+
 
 # Permissions:
 * Access to Internet - needed for connection to the API so as to fetch the weather data. If user is not connected to the Internet the app will prompt the user to do so.
@@ -66,7 +71,8 @@ This Weather App uses spotlessApply to ensure there is consistent code formattin
 
 
 # TO-DO:
-1. Tests - also write test cases for the app.
+1. Tests - write test cases for the app.
+2. Ktlint check - finalize on ktlint check before come push.
 
 
 # Screenshots:

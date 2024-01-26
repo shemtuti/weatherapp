@@ -14,11 +14,11 @@ import com.dvt.weatherapp.utils.Util
 fun DaysTemp(tempValue: Double?, label: String) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Text(
             text = String.format(
-                Util.getFormatTemp(tempValue) + stringResource(R.string.temp_symbol)
+                Util.getFormatTemp(tempValue) + stringResource(R.string.temp_symbol),
             ),
             style = MaterialTheme.typography.titleMedium,
         )

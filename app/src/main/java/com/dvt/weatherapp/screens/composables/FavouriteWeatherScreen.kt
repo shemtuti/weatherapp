@@ -30,7 +30,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun FavouriteWeather(
     onToggleDrawer: () -> Unit,
-    viewModel: FavouriteViewModel = koinViewModel()
+    viewModel: FavouriteViewModel = koinViewModel(),
 ) {
     val uiFavouriteState = viewModel.stateFavourite.collectAsState().value
     Column(
@@ -38,9 +38,8 @@ fun FavouriteWeather(
         verticalArrangement = Arrangement.Center,
         modifier = Modifier
             .background(Color.White)
-            .fillMaxSize()
+            .fillMaxSize(),
     ) {
-
         DrawerButton(onToggleDrawer = onToggleDrawer)
 
         Text(
@@ -49,13 +48,13 @@ fun FavouriteWeather(
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 1.dp, bottom = 10.dp)
+                .padding(top = 1.dp, bottom = 10.dp),
         )
 
         Box(
             modifier = Modifier
                 .background(Color.White)
-                .fillMaxSize()
+                .fillMaxSize(),
         ) {
             if (uiFavouriteState.favourite.toString().equals("[]")) {
                 Text(
@@ -64,7 +63,7 @@ fun FavouriteWeather(
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .align(Alignment.Center)
+                        .align(Alignment.Center),
                 )
             } else {
                 LazyVerticalGrid(
@@ -80,7 +79,8 @@ fun FavouriteWeather(
                             FavouriteItem(
                                 favourite = favourite,
                             )
-                        })
+                        },
+                    )
                 }
             }
         }

@@ -11,6 +11,6 @@ object Constants {
     val PERMISSION_REQUEST_LOCATION = 100
     var permissionsLocation = arrayOf(
         Manifest.permission.ACCESS_COARSE_LOCATION,
-        Manifest.permission.ACCESS_FINE_LOCATION
+        Manifest.permission.ACCESS_FINE_LOCATION,
     )
 }

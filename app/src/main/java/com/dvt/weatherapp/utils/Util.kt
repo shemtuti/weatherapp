@@ -57,7 +57,6 @@ class Util {
             val formatter = DateTimeFormatter.ofPattern("EEEE")
 
             return dateTime.format(formatter)
-
         }
 
         fun convertHourOfDay(unixTimestamp: Int): String {
@@ -100,19 +99,19 @@ class Util {
                 "Clouds" -> ResourcesCompat.getDrawable(
                     context.resources,
                     R.drawable.sea_cloudy,
-                    null
+                    null,
                 )
 
                 "Rain" -> ResourcesCompat.getDrawable(
                     context.resources,
                     R.drawable.sea_rainy,
-                    null
+                    null,
                 )
 
                 else -> ResourcesCompat.getDrawable(
                     context.resources,
                     R.drawable.sea_sunny,
-                    null
+                    null,
                 )
             }
             return weatherDrawable
@@ -123,19 +122,19 @@ class Util {
                 "Clouds" -> ResourcesCompat.getDrawable(
                     context.resources,
                     R.mipmap.ic_partlysunny,
-                    null
+                    null,
                 )
 
                 "Rain" -> ResourcesCompat.getDrawable(
                     context.resources,
                     R.mipmap.ic_rain,
-                    null
+                    null,
                 )
 
                 else -> ResourcesCompat.getDrawable(
                     context.resources,
                     R.mipmap.ic_clear,
-                    null
+                    null,
                 )
             }
             return weatherDrawable
@@ -146,19 +145,19 @@ class Util {
                 "Clouds" -> ResourcesCompat.getDrawable(
                     context.resources,
                     R.drawable.marker_cloudy,
-                    null
+                    null,
                 )
 
                 "Rain" -> ResourcesCompat.getDrawable(
                     context.resources,
                     R.drawable.marker_rainy,
-                    null
+                    null,
                 )
 
                 else -> ResourcesCompat.getDrawable(
                     context.resources,
                     R.drawable.marker_sunny,
-                    null
+                    null,
                 )
             }
             return weatherDrawable
@@ -183,5 +182,4 @@ class Util {
             return sdf.format(d)
         }
     }
-
 }

@@ -23,6 +23,4 @@ interface ForecastWeatherDao {
 
     @Query("SELECT * FROM forecastweathertable WHERE date = :timestamp")
     fun getForecastDayWeather(timestamp: String): Flow<List<ForecastDayWeatherState>>
-
-
 }

@@ -23,7 +23,8 @@ import com.google.accompanist.drawablepainter.rememberDrawablePainter
 @Composable
 fun ForecastListItems(
     forecast: ForecastTable,
-    onItemClick: () -> Unit) {
+    onItemClick: () -> Unit,
+) {
     val context = LocalContext.current
     Box(
         Modifier
@@ -34,29 +35,30 @@ fun ForecastListItems(
             .padding(top = 8.dp)
             .clickable {
                 onItemClick()
-            }
+            },
     ) {
         Text(
             text = String.format(Util.getDayOfWeekFromUTC(forecast.dt)),
             style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.align(Alignment.CenterStart))
+            modifier = Modifier.align(Alignment.CenterStart),
+        )
 
         Image(
             modifier = Modifier.align(Alignment.Center).size(20.dp),
             painter = rememberDrawablePainter(
                 drawable = Util.getWeatherIconDrawable(
                     context = context,
-                    forecast.currentWeather
-                )
+                    forecast.currentWeather,
+                ),
             ),
             contentDescription = stringResource(R.string.weather_icon),
         )
         Text(
             text = String.format(
-                Util.getFormatTemp(forecast.tempNormal) + stringResource(R.string.temp_symbol)
+                Util.getFormatTemp(forecast.tempNormal) + stringResource(R.string.temp_symbol),
             ),
             style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.align(Alignment.CenterEnd)
+            modifier = Modifier.align(Alignment.CenterEnd),
         )
     }
 }

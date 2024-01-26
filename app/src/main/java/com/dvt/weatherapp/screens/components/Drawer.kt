@@ -37,7 +37,7 @@ enum class HomeDrawerOptions(
     val icon: Int,
     val title: String,
 
-    ) {
+) {
     Home(
         icon = R.drawable.icon_home,
         title = "Home",
@@ -57,7 +57,7 @@ fun HomeDrawerContent(
     onExit: () -> Unit,
     onClick: (HomeDrawerOptions) -> Unit,
     currentRoute: HomeDrawerOptions,
-){
+) {
     Surface(
         modifier = Modifier,
         color = MaterialTheme.colorScheme.primaryContainer,
@@ -69,7 +69,8 @@ fun HomeDrawerContent(
         ) {
             Header(
                 onExit = onExit,
-                modifier = Modifier.align(Alignment.End))
+                modifier = Modifier.align(Alignment.End),
+            )
 
             Links(
                 onClick = onClick,
@@ -93,7 +94,7 @@ private fun Header(onExit: () -> Unit, modifier: Modifier = Modifier) {
             Icon(
                 painter = painterResource(id = R.drawable.icon_close),
                 contentDescription = null,
-                modifier = Modifier.size(50.dp)
+                modifier = Modifier.size(50.dp),
             )
         }
     }

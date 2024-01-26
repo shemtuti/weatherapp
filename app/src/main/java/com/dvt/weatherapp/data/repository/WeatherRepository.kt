@@ -19,5 +19,5 @@ interface WeatherRepository {
 
     suspend fun deleteFavourite(favourite: FavouriteTable)
     suspend fun deleteFavouriteByName(name: String)
-    suspend fun checkIsFavouriteStatus(name: String) : Boolean
+    suspend fun checkIsFavouriteStatus(name: String): Boolean
 }

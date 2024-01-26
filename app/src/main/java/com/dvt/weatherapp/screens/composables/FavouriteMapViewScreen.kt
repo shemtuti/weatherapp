@@ -46,11 +46,11 @@ import timber.log.Timber
 @Composable
 fun FavouriteMap(
     onToggleDrawer: () -> Unit,
-    viewModel: FavouriteViewModel = koinViewModel()
+    viewModel: FavouriteViewModel = koinViewModel(),
 ) {
     val uiFavouriteState = viewModel.stateFavourite.collectAsState().value
     val mapView = rememberFavouriteMapViewWithLifecycle()
-    var map : GoogleMap? by remember { mutableStateOf(null) }
+    var map: GoogleMap? by remember { mutableStateOf(null) }
     var selectedMapType by remember { mutableIntStateOf(GoogleMap.MAP_TYPE_NORMAL) }
     var expanded by remember { mutableStateOf(false) }
 
@@ -65,7 +65,7 @@ fun FavouriteMap(
         verticalArrangement = Arrangement.Center,
         modifier = Modifier
             .background(Color.White)
-            .fillMaxSize()
+            .fillMaxSize(),
     ) {
         DrawerButton(onToggleDrawer = onToggleDrawer)
 
@@ -75,16 +75,17 @@ fun FavouriteMap(
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 1.dp, bottom = 10.dp)
+                .padding(top = 1.dp, bottom = 10.dp),
         )
 
-        Box(modifier = Modifier
-            .background(Color.LightGray)
+        Box(
+            modifier = Modifier
+                .background(Color.LightGray),
         ) {
             Text(
                 text = stringResource(R.string.select_map_type),
                 style = MaterialTheme.typography.labelLarge,
-                modifier = Modifier.padding(5.dp).clickable { expanded = true }
+                modifier = Modifier.padding(5.dp).clickable { expanded = true },
             )
 
             DropdownMenu(
@@ -104,7 +105,7 @@ fun FavouriteMap(
                         selectedMapType = GoogleMap.MAP_TYPE_NORMAL
                         expanded = false
                         map?.mapType = selectedMapType
-                    }
+                    },
                 )
                 DropdownMenuItem(
                     text = {
@@ -118,12 +119,12 @@ fun FavouriteMap(
                         selectedMapType = GoogleMap.MAP_TYPE_SATELLITE
                         expanded = false
                         map?.mapType = selectedMapType
-                    }
+                    },
                 )
                 DropdownMenuItem(
                     text = {
                         Text(
-                            text ="Hybrid",
+                            text = "Hybrid",
                             style = MaterialTheme.typography.labelLarge,
                             modifier = Modifier.align(Alignment.CenterHorizontally),
                         )
@@ -132,7 +133,7 @@ fun FavouriteMap(
                         selectedMapType = GoogleMap.MAP_TYPE_HYBRID
                         expanded = false
                         map?.mapType = selectedMapType
-                    }
+                    },
                 )
                 DropdownMenuItem(
                     text = {
@@ -146,7 +147,7 @@ fun FavouriteMap(
                         selectedMapType = GoogleMap.MAP_TYPE_TERRAIN
                         expanded = false
                         map?.mapType = selectedMapType
-                    }
+                    },
                 )
             }
         }
@@ -154,7 +155,7 @@ fun FavouriteMap(
         Box(
             modifier = Modifier
                 .background(Color.White)
-                .fillMaxSize()
+                .fillMaxSize(),
         ) {
             AndroidView({ mapView }) { mapView ->
                 if (!uiFavouriteState.favourite.equals("[]")) {
@@ -180,8 +181,7 @@ fun FavouriteMap(
                                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker))
                                     .position(location)
                                 map?.addMarker(markerOptions)
-                            }
-                            catch(e: Exception){
+                            } catch (e: Exception) {
                                 Timber.e(e.message.toString())
                             }
                         }
@@ -190,7 +190,7 @@ fun FavouriteMap(
                             val padding = 40
 
                             map?.moveCamera(
-                                CameraUpdateFactory.newLatLngBounds(validBounds, padding)
+                                CameraUpdateFactory.newLatLngBounds(validBounds, padding),
                             )
                         }
                     }

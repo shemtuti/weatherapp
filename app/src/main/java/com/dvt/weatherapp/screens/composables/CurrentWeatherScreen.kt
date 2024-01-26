@@ -40,14 +40,14 @@ import com.dvt.weatherapp.screens.components.DaysTemp
 import com.dvt.weatherapp.screens.viewmodels.FavouriteViewModel
 import com.dvt.weatherapp.utils.Util
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
-import org.koin.androidx.compose.koinViewModel
 import java.util.Locale
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun CurrentWeather(
     uiCurrentState: CurrentWeatherState,
     saveFavourite: () -> Unit,
-    viewModel: FavouriteViewModel = koinViewModel()
+    viewModel: FavouriteViewModel = koinViewModel(),
 ) {
     val context = LocalContext.current
     val weatherMain = uiCurrentState.weather?.currentWeather
@@ -62,34 +62,35 @@ fun CurrentWeather(
                 painter = rememberDrawablePainter(
                     drawable = Util.getWeatherBackgroundDrawable(
                         context = context,
-                        weatherMain
-                    )
+                        weatherMain,
+                    ),
                 ),
-                contentScale = ContentScale.FillBounds
+                contentScale = ContentScale.FillBounds,
             )
-            .fillMaxWidth()
+            .fillMaxWidth(),
     ) {
-        IconButton(onClick = {
-            if (isFavourite) {
-                viewModel.deleteFavouriteByName(uiCurrentState.weather?.locationName.toString())
-                Toast.makeText(context, "Deleted from favourites", Toast.LENGTH_SHORT).show()
-            } else {
-                saveFavourite()
-                Toast.makeText(context, "Saved to favourites", Toast.LENGTH_SHORT).show()
-            }
-            isFavourite = !isFavourite
-        },
+        IconButton(
+            onClick = {
+                if (isFavourite) {
+                    viewModel.deleteFavouriteByName(uiCurrentState.weather?.locationName.toString())
+                    Toast.makeText(context, "Deleted from favourites", Toast.LENGTH_SHORT).show()
+                } else {
+                    saveFavourite()
+                    Toast.makeText(context, "Saved to favourites", Toast.LENGTH_SHORT).show()
+                }
+                isFavourite = !isFavourite
+            },
             modifier = Modifier
                 .size(50.dp)
                 .align(Alignment.TopEnd)
-                .padding(top = 10.dp, end = 10.dp)
+                .padding(top = 10.dp, end = 10.dp),
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.icon_favourite),
                 contentDescription = "",
                 tint = if (isFavourite) Color.Red else Color.Unspecified,
                 modifier = Modifier
-                    .size(30.dp)
+                    .size(30.dp),
             )
         }
 
@@ -100,21 +101,21 @@ fun CurrentWeather(
                 .align(Alignment.Center)
                 .wrapContentWidth()
                 .padding(16.dp)
-                .wrapContentHeight()
+                .wrapContentHeight(),
 
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
+                horizontalArrangement = Arrangement.Center,
             ) {
                 Image(
                     modifier = Modifier.size(22.dp),
                     painter = rememberDrawablePainter(
                         drawable = Util.getLocationIconDrawable(
                             context = context,
-                            weatherMain
-                        )
+                            weatherMain,
+                        ),
                     ),
                     contentDescription = stringResource(R.string.location_icon),
                 )
@@ -128,7 +129,7 @@ fun CurrentWeather(
             Spacer(modifier = Modifier.height(10.dp))
             Text(
                 text = String.format(
-                    Util.getFormatTemp(uiCurrentState.weather?.tempNormal) + stringResource(R.string.temp_symbol)
+                    Util.getFormatTemp(uiCurrentState.weather?.tempNormal) + stringResource(R.string.temp_symbol),
                 ),
                 style = MaterialTheme.typography.headlineLarge,
                 textAlign = TextAlign.Center,
@@ -155,12 +156,11 @@ fun CurrentWeather(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 18.dp, top = 32.dp, end = 18.dp)
+                .padding(start = 18.dp, top = 32.dp, end = 18.dp),
         ) {
             DaysTemp(uiCurrentState.weather?.tempMin, "min")
             DaysTemp(uiCurrentState.weather?.tempNormal, "Current")
             DaysTemp(uiCurrentState.weather?.tempMax, "max")
         }
     }
-
 }

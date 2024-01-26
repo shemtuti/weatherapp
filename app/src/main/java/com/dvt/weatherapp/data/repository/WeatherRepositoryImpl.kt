@@ -9,23 +9,23 @@ import com.dvt.weatherapp.data.remote.api.ApiService
 import com.dvt.weatherapp.data.remote.model.FetchResult
 import com.dvt.weatherapp.utils.Constants
 import com.dvt.weatherapp.utils.Util
+import java.io.IOException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import timber.log.Timber
-import java.io.IOException
 
 internal class WeatherRepositoryImpl(
     private val database: WeatherDatabase,
     private val apiService: ApiService,
-): WeatherRepository {
+) : WeatherRepository {
     override suspend fun getRemoteCurrentWeather(lat: String, lon: String): FetchResult<Boolean> {
         return withContext(Dispatchers.IO) {
             try {
                 FetchResult.Loading
-                val currentWeatherResult  =
+                val currentWeatherResult =
                     apiService.getCurrentWeatherUsingLatLng(lat, lon, Constants.WEATHER_API_KEY)
-                if(currentWeatherResult.isSuccessful) {
+                if (currentWeatherResult.isSuccessful) {
                     currentWeatherResult.body()?.apply {
                         val currentWeather = CurrentTable(
                             dt,
@@ -67,7 +67,7 @@ internal class WeatherRepositoryImpl(
                 FetchResult.Loading
                 val forecastResult =
                     apiService.getForecastUsingLatLng(lat, lon, Constants.WEATHER_API_KEY)
-                if(forecastResult.isSuccessful) {
+                if (forecastResult.isSuccessful) {
                     forecastResult.body()?.list?.forEach { item ->
                         val forecast = ForecastTable(
                             Util.convertToDateTime(item.dt),
@@ -121,10 +121,7 @@ internal class WeatherRepositoryImpl(
     override suspend fun deleteFavouriteByName(name: String) {
         database.favouriteWeatherDao.deleteFavouriteByName(name)
     }
-    override suspend fun checkIsFavouriteStatus(name: String) : Boolean {
+    override suspend fun checkIsFavouriteStatus(name: String): Boolean {
         return database.favouriteWeatherDao.checkIsFavouriteStatus(name)
     }
-
-
-
 }

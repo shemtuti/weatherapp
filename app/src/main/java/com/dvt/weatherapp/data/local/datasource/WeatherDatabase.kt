@@ -16,7 +16,7 @@ import com.dvt.weatherapp.data.local.model.ForecastTable
         FavouriteTable::class,
     ],
     version = 1,
-    exportSchema = false
+    exportSchema = false,
 )
 abstract class WeatherDatabase : RoomDatabase() {
     abstract val currentWeatherDao: CurrentWeatherDao

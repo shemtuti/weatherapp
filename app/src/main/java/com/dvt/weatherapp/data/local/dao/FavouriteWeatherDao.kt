@@ -29,5 +29,4 @@ interface FavouriteWeatherDao {
 
     @Query("SELECT EXISTS (SELECT 1 FROM favouriteweathertable WHERE locationName = :name)")
     suspend fun checkIsFavouriteStatus(name: String): Boolean
-
 }

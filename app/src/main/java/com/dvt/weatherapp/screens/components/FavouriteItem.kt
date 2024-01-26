@@ -50,17 +50,17 @@ fun FavouriteItem(
         Box(
             Modifier
                 .fillMaxSize()
-                .background(color = color)
+                .background(color = color),
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
             ) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(15.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Column(modifier = Modifier.fillMaxWidth(0.5f)) {
                         Text(
@@ -77,8 +77,8 @@ fun FavouriteItem(
                         painter = rememberDrawablePainter(
                             drawable = Util.getWeatherIconDrawable(
                                 context = context,
-                                favourite.currentWeather
-                            )
+                                favourite.currentWeather,
+                            ),
                         ),
                         contentDescription = stringResource(R.string.location_icon),
                     )
@@ -87,7 +87,7 @@ fun FavouriteItem(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(15.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Column(modifier = Modifier.fillMaxWidth(0.7f)) {
                         Text(
@@ -102,7 +102,8 @@ fun FavouriteItem(
                             tint = Color(0xFFd68118),
                             modifier = Modifier.size(20.dp).clickable {
                                 viewModel.deleteFavourite(favourite)
-                            })
+                            },
+                        )
                     }
                 }
             }

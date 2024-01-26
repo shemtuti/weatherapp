@@ -19,6 +19,4 @@ interface CurrentWeatherDao {
 
     @Query("SELECT * FROM currentweathertable ORDER BY dt DESC LIMIT 1")
     fun getCurrentWeather(): Flow<CurrentTable>
-
-
 }

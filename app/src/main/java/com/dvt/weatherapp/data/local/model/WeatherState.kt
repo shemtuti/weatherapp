@@ -26,5 +26,5 @@ data class ForecastDayWeatherState(
 )
 
 data class FavouriteWeatherState(
-    val favourite: List<FavouriteTable> = emptyList()
+    val favourite: List<FavouriteTable> = emptyList(),
 )

@@ -28,11 +28,11 @@ fun ForecastWeather(
 ) {
     var showDetails by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState()
-    var forecastDate  by remember { mutableStateOf("")}
-    var forecastDay  by remember { mutableStateOf("")}
+    var forecastDate by remember { mutableStateOf("") }
+    var forecastDay by remember { mutableStateOf("") }
 
     LazyColumn(
-        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
     ) {
         items(
             items = uiForestState.forecast,
@@ -44,17 +44,17 @@ fun ForecastWeather(
                         showDetails = true
                     })
                 }
-            }
+            },
         )
     }
 
-    if(showDetails){
+    if (showDetails) {
         ModalBottomSheet(
             onDismissRequest = { showDetails = false },
             sheetState = sheetState,
             modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(min = 100.dp,max = 500.dp)
+                .heightIn(min = 100.dp, max = 500.dp),
         ) {
             ForecastListDetails(forecastDate, forecastDay)
         }

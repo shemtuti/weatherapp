@@ -15,12 +15,12 @@ import com.dvt.weatherapp.R
 
 @Composable
 fun DrawerButton(
-    onToggleDrawer: () -> Unit) {
-
+    onToggleDrawer: () -> Unit,
+) {
     Box(
         Modifier
             .padding(start = 10.dp, top = 10.dp, bottom = 5.dp)
-            .fillMaxWidth()
+            .fillMaxWidth(),
     ) {
         Icon(
             painter = painterResource(id = R.drawable.icon_menu),
@@ -30,7 +30,7 @@ fun DrawerButton(
                 .align(Alignment.CenterStart)
                 .clickable {
                     onToggleDrawer()
-            },
+                },
         )
     }
 }
